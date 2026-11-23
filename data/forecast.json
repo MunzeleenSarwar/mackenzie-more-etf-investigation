@@ -1,0 +1,103 @@
+{
+  "start_price": 38.02000045776367,
+  "weeks": 113,
+  "weekly_mean_pct": 0.603,
+  "weekly_vol_pct": 2.637,
+  "se_annual_return_points": 12.9,
+  "monte_carlo": {
+    "historical": {
+      "drift_annual_pct": 31.37,
+      "median_terminal": 51.02,
+      "mean_terminal": 51.93,
+      "p5_terminal": 37.27,
+      "p95_terminal": 69.67,
+      "median_gain_pct": 34.18,
+      "p5_gain_pct": -1.97,
+      "p95_gain_pct": 83.23,
+      "prob_loss_pct": 6.1,
+      "var95_pct": 1.97,
+      "cvar95_pct": 9.01,
+      "median_10000": 13418.1,
+      "p5_10000": 9802.56,
+      "p95_10000": 18323.42
+    },
+    "conservative_7pct": {
+      "drift_annual_pct": 7.0,
+      "median_terminal": 40.14,
+      "mean_terminal": 40.81,
+      "p5_terminal": 29.41,
+      "p95_terminal": 54.37,
+      "median_gain_pct": 5.58,
+      "p5_gain_pct": -22.64,
+      "p95_gain_pct": 42.99,
+      "prob_loss_pct": 38.57,
+      "var95_pct": 22.64,
+      "cvar95_pct": 28.64,
+      "median_10000": 10558.18,
+      "p5_10000": 7735.99,
+      "p95_10000": 14299.32
+    }
+  },
+  "regression": {
+    "weeks": 113,
+    "r2": 0.634,
+    "resid_vol_annual_pct": 11.66,
+    "alpha": {
+      "beta": -0.0,
+      "se": 0.002,
+      "t": -0.0
+    },
+    "WTI": {
+      "beta": 0.132,
+      "se": 0.023,
+      "t": 5.71
+    },
+    "Gold": {
+      "beta": 0.321,
+      "se": 0.055,
+      "t": 5.79
+    },
+    "XIC": {
+      "beta": 0.957,
+      "se": 0.106,
+      "t": 8.99
+    }
+  },
+  "scenarios": [
+    {
+      "scenario": "Base: oil +5%, gold +5%, TSX +7%",
+      "oil_move_pct": 5.0,
+      "gold_move_pct": 5.0,
+      "tsx_move_pct": 7.000000000000001,
+      "implied_more_move_pct": 8.94
+    },
+    {
+      "scenario": "Energy rally: oil +20%, gold 0%, TSX +10%",
+      "oil_move_pct": 20.0,
+      "gold_move_pct": 0.0,
+      "tsx_move_pct": 10.0,
+      "implied_more_move_pct": 12.19
+    },
+    {
+      "scenario": "Gold rally: oil 0%, gold +20%, TSX +5%",
+      "oil_move_pct": 0.0,
+      "gold_move_pct": 20.0,
+      "tsx_move_pct": 5.0,
+      "implied_more_move_pct": 11.18
+    },
+    {
+      "scenario": "Both fall: oil -20%, gold -10%, TSX -10%",
+      "oil_move_pct": -20.0,
+      "gold_move_pct": -10.0,
+      "tsx_move_pct": -10.0,
+      "implied_more_move_pct": -15.45
+    },
+    {
+      "scenario": "Oil crash, gold safety: oil -30%, gold +10%, TSX -5%",
+      "oil_move_pct": -30.0,
+      "gold_move_pct": 10.0,
+      "tsx_move_pct": -5.0,
+      "implied_more_move_pct": -5.57
+    }
+  ]
+}

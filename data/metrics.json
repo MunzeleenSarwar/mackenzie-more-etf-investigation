@@ -1,0 +1,351 @@
+{
+  "metrics": {
+    "MORE": {
+      "start": "2024-09-20",
+      "end": "2026-11-13",
+      "weeks": 113,
+      "annual_return_pct": 31.37,
+      "annual_vol_pct": 19.01,
+      "return_vol": 1.65,
+      "sharpe_rf2pct": 1.54,
+      "max_drawdown_pct": -10.76,
+      "worst_week_pct": -10.76,
+      "weekly_cvar95_pct": -5.26,
+      "cumulative_pct": 89.81,
+      "final_10000": 18980.57
+    },
+    "XEG": {
+      "start": "2024-09-20",
+      "end": "2026-11-13",
+      "weeks": 113,
+      "annual_return_pct": 32.34,
+      "annual_vol_pct": 27.14,
+      "return_vol": 1.19,
+      "sharpe_rf2pct": 1.12,
+      "max_drawdown_pct": -19.28,
+      "worst_week_pct": -12.76,
+      "weekly_cvar95_pct": -8.58,
+      "cumulative_pct": 85.98,
+      "final_10000": 18598.29
+    },
+    "XMA": {
+      "start": "2024-09-20",
+      "end": "2026-11-13",
+      "weeks": 113,
+      "annual_return_pct": 37.31,
+      "annual_vol_pct": 37.15,
+      "return_vol": 1.0,
+      "sharpe_rf2pct": 0.95,
+      "max_drawdown_pct": -31.7,
+      "worst_week_pct": -13.63,
+      "weekly_cvar95_pct": -10.57,
+      "cumulative_pct": 93.67,
+      "final_10000": 19366.76
+    },
+    "ZEO": {
+      "start": "2024-09-20",
+      "end": "2026-11-13",
+      "weeks": 113,
+      "annual_return_pct": 26.96,
+      "annual_vol_pct": 21.99,
+      "return_vol": 1.23,
+      "sharpe_rf2pct": 1.14,
+      "max_drawdown_pct": -14.73,
+      "worst_week_pct": -9.96,
+      "weekly_cvar95_pct": -6.9,
+      "cumulative_pct": 70.26,
+      "final_10000": 17026.12
+    },
+    "XGD": {
+      "start": "2024-09-20",
+      "end": "2026-11-13",
+      "weeks": 113,
+      "annual_return_pct": 46.63,
+      "annual_vol_pct": 43.44,
+      "return_vol": 1.07,
+      "sharpe_rf2pct": 1.03,
+      "max_drawdown_pct": -35.86,
+      "worst_week_pct": -14.23,
+      "weekly_cvar95_pct": -10.92,
+      "cumulative_pct": 124.86,
+      "final_10000": 22486.03
+    },
+    "XIC": {
+      "start": "2024-09-20",
+      "end": "2026-11-13",
+      "weeks": 113,
+      "annual_return_pct": 22.74,
+      "annual_vol_pct": 11.29,
+      "return_vol": 2.01,
+      "sharpe_rf2pct": 1.84,
+      "max_drawdown_pct": -8.77,
+      "worst_week_pct": -6.19,
+      "weekly_cvar95_pct": -3.7,
+      "cumulative_pct": 61.5,
+      "final_10000": 16150.15
+    },
+    "BLEND": {
+      "start": "2024-09-20",
+      "end": "2026-11-13",
+      "weeks": 113,
+      "annual_return_pct": 34.82,
+      "annual_vol_pct": 21.13,
+      "return_vol": 1.65,
+      "sharpe_rf2pct": 1.55,
+      "max_drawdown_pct": -11.32,
+      "worst_week_pct": -11.32,
+      "weekly_cvar95_pct": -5.5,
+      "cumulative_pct": 102.66,
+      "final_10000": 20266.36
+    }
+  },
+  "periods": {
+    "2024_stub_sep_dec": {
+      "MORE": {
+        "weeks": 15,
+        "return_pct": 4.75,
+        "vol_pct": 18.5,
+        "cum_pct": 0.92
+      },
+      "XEG": {
+        "weeks": 15,
+        "return_pct": 11.83,
+        "vol_pct": 27.6,
+        "cum_pct": 2.42
+      },
+      "XMA": {
+        "weeks": 15,
+        "return_pct": -11.06,
+        "vol_pct": 23.13,
+        "cum_pct": -3.84
+      },
+      "ZEO": {
+        "weeks": 15,
+        "return_pct": 15.88,
+        "vol_pct": 22.27,
+        "cum_pct": 4.0
+      },
+      "XGD": {
+        "weeks": 15,
+        "return_pct": -29.99,
+        "vol_pct": 31.03,
+        "cum_pct": -9.49
+      },
+      "XIC": {
+        "weeks": 15,
+        "return_pct": 20.69,
+        "vol_pct": 10.08,
+        "cum_pct": 5.99
+      },
+      "BLEND": {
+        "weeks": 15,
+        "return_pct": 0.38,
+        "vol_pct": 19.59,
+        "cum_pct": -0.4
+      }
+    },
+    "2025": {
+      "MORE": {
+        "weeks": 52,
+        "return_pct": 46.47,
+        "vol_pct": 18.82,
+        "cum_pct": 56.08
+      },
+      "XEG": {
+        "weeks": 52,
+        "return_pct": 18.53,
+        "vol_pct": 23.91,
+        "cum_pct": 16.94
+      },
+      "XMA": {
+        "weeks": 52,
+        "return_pct": 75.68,
+        "vol_pct": 27.62,
+        "cum_pct": 104.43
+      },
+      "ZEO": {
+        "weeks": 52,
+        "return_pct": 15.25,
+        "vol_pct": 18.39,
+        "cum_pct": 14.51
+      },
+      "XGD": {
+        "weeks": 52,
+        "return_pct": 98.54,
+        "vol_pct": 33.57,
+        "cum_pct": 151.76
+      },
+      "XIC": {
+        "weeks": 52,
+        "return_pct": 28.86,
+        "vol_pct": 11.45,
+        "cum_pct": 32.5
+      },
+      "BLEND": {
+        "weeks": 52,
+        "return_pct": 47.11,
+        "vol_pct": 20.55,
+        "cum_pct": 56.53
+      }
+    },
+    "2026_ytd": {
+      "MORE": {
+        "weeks": 46,
+        "return_pct": 22.98,
+        "vol_pct": 19.52,
+        "cum_pct": 20.51
+      },
+      "XEG": {
+        "weeks": 46,
+        "return_pct": 54.64,
+        "vol_pct": 30.53,
+        "cum_pct": 55.28
+      },
+      "XMA": {
+        "weeks": 46,
+        "return_pct": 9.7,
+        "vol_pct": 48.39,
+        "cum_pct": -1.48
+      },
+      "ZEO": {
+        "weeks": 46,
+        "return_pct": 43.82,
+        "vol_pct": 25.63,
+        "cum_pct": 42.98
+      },
+      "XGD": {
+        "weeks": 46,
+        "return_pct": 12.92,
+        "vol_pct": 54.78,
+        "cum_pct": -1.32
+      },
+      "XIC": {
+        "weeks": 46,
+        "return_pct": 16.49,
+        "vol_pct": 11.65,
+        "cum_pct": 15.0
+      },
+      "BLEND": {
+        "weeks": 46,
+        "return_pct": 32.17,
+        "vol_pct": 22.4,
+        "cum_pct": 30.0
+      }
+    },
+    "last_1y": {
+      "MORE": {
+        "weeks": 53,
+        "return_pct": 33.92,
+        "vol_pct": 19.98,
+        "cum_pct": 38.4
+      },
+      "XEG": {
+        "weeks": 53,
+        "return_pct": 49.15,
+        "vol_pct": 29.23,
+        "cum_pct": 57.69
+      },
+      "XMA": {
+        "weeks": 53,
+        "return_pct": 27.65,
+        "vol_pct": 47.14,
+        "cum_pct": 18.67
+      },
+      "ZEO": {
+        "weeks": 53,
+        "return_pct": 39.87,
+        "vol_pct": 24.72,
+        "cum_pct": 45.39
+      },
+      "XGD": {
+        "weeks": 53,
+        "return_pct": 32.17,
+        "vol_pct": 53.12,
+        "cum_pct": 20.77
+      },
+      "XIC": {
+        "weeks": 53,
+        "return_pct": 21.39,
+        "vol_pct": 11.61,
+        "cum_pct": 23.47
+      },
+      "BLEND": {
+        "weeks": 53,
+        "return_pct": 38.4,
+        "vol_pct": 22.25,
+        "cum_pct": 44.15
+      }
+    },
+    "full": {
+      "MORE": {
+        "weeks": 113,
+        "return_pct": 31.37,
+        "vol_pct": 19.01,
+        "cum_pct": 89.81
+      },
+      "XEG": {
+        "weeks": 113,
+        "return_pct": 32.34,
+        "vol_pct": 27.14,
+        "cum_pct": 85.98
+      },
+      "XMA": {
+        "weeks": 113,
+        "return_pct": 37.31,
+        "vol_pct": 37.15,
+        "cum_pct": 93.67
+      },
+      "ZEO": {
+        "weeks": 113,
+        "return_pct": 26.96,
+        "vol_pct": 21.99,
+        "cum_pct": 70.26
+      },
+      "XGD": {
+        "weeks": 113,
+        "return_pct": 46.63,
+        "vol_pct": 43.44,
+        "cum_pct": 124.86
+      },
+      "XIC": {
+        "weeks": 113,
+        "return_pct": 22.74,
+        "vol_pct": 11.29,
+        "cum_pct": 61.5
+      },
+      "BLEND": {
+        "weeks": 113,
+        "return_pct": 34.82,
+        "vol_pct": 21.13,
+        "cum_pct": 102.66
+      }
+    }
+  },
+  "corr_with_more": {
+    "MORE": 1.0,
+    "XEG": 0.517,
+    "XMA": 0.708,
+    "ZEO": 0.487,
+    "XGD": 0.652,
+    "XIC": 0.642,
+    "BLEND": 0.954
+  },
+  "first_price": {
+    "MORE": 20.03,
+    "XEG": 15.43,
+    "XMA": 21.78,
+    "ZEO": 64.82,
+    "XGD": 23.3,
+    "XIC": 35.77,
+    "BLEND": 15.43
+  },
+  "last_price": {
+    "MORE": 38.02,
+    "XEG": 28.69,
+    "XMA": 42.18,
+    "ZEO": 110.36,
+    "XGD": 52.4,
+    "XIC": 57.77,
+    "BLEND": 31.26
+  }
+}

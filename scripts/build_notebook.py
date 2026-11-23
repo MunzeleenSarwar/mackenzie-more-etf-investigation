@@ -1,0 +1,125 @@
+"""Build the MORE recomputation notebook. Written as plain JSON, so it needs
+no notebook package installed. Run the notebook in VS Code to recompute
+every number in the performance tables from the weekly price file."""
+import json
+import pathlib
+
+base = pathlib.Path(__file__).resolve().parents[1]
+
+
+def md(text):
+    return {"cell_type": "markdown", "metadata": {},
+            "source": text.splitlines(True)}
+
+
+def code(text):
+    return {"cell_type": "code", "execution_count": None, "metadata": {},
+            "outputs": [], "source": text.splitlines(True)}
+
+
+cells = [
+    md("# Investigating MORE\n\nMackenzie Core Resources ETF, TSX: MORE. "
+       "What does one ticker buy, what does it cost, and what risk does it carry? "
+       "This notebook recomputes the performance tables in the report from the "
+       "weekly price file, so every number can be checked."),
+    code("import numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\n"
+         "prices = pd.read_csv('data/weekly_prices_cad.csv', index_col=0, parse_dates=True)\n"
+         "prices.head()"),
+    code("# Weekly returns. BLEND is a 50/50 XEG/XMA portfolio, rebalanced weekly.\n"
+         "rets = prices.pct_change().dropna()\n"
+         "rets['BLEND'] = 0.5 * rets['XEG'] + 0.5 * rets['XMA']\n"
+         "print('Weeks:', len(rets))\n"
+         "print('From', rets.index[0].date(), 'to', rets.index[-1].date())"),
+    code("def stats(s, rf=0.02):\n"
+         "    ann_ret = s.mean() * 52\n"
+         "    vol = s.std() * np.sqrt(52)\n"
+         "    cum = (1 + s).cumprod()\n"
+         "    dd = cum / cum.cummax() - 1\n"
+         "    return {\n"
+         "        'annual return %': round(float(ann_ret * 100), 2),\n"
+         "        'volatility %': round(float(vol * 100), 2),\n"
+         "        'return / volatility': round(float(ann_ret / vol), 2),\n"
+         "        'Sharpe (2% risk free)': round(float((ann_ret - rf) / vol), 2),\n"
+         "        'max drawdown %': round(float(dd.min() * 100), 2),\n"
+         "        'worst week %': round(float(s.min() * 100), 2),\n"
+         "        'weekly CVaR 95% %': round(float(s[s <= s.quantile(0.05)].mean() * 100), 2),\n"
+         "        'total gain %': round(float((cum.iloc[-1] - 1) * 100), 2),\n"
+         "        '$10,000 becomes': round(float(10000 * cum.iloc[-1]), 2),\n"
+         "    }\n\n"
+         "metrics = pd.DataFrame({k: stats(rets[k]) for k in rets.columns}).T\n"
+         "metrics"),
+    code("# Growth of $10,000, weekly, in CAD\n"
+         "growth = (1 + rets).cumprod() * 10000\n"
+         "growth.plot(figsize=(10, 5), title='Growth of $10,000 in CAD, weekly')\n"
+         "plt.ylabel('$')\n"
+         "plt.grid(alpha=0.3)\n"
+         "plt.show()"),
+    code("# MORE drawdown: fall from the previous peak, in percent\n"
+         "dd = growth / growth.cummax() - 1\n"
+         "plt.figure(figsize=(10, 5))\n"
+         "plt.plot(dd.index, dd['MORE'] * 100, color='#1D5C30')\n"
+         "plt.fill_between(dd.index, dd['MORE'] * 100, 0, alpha=0.2, color='#1D5C30')\n"
+         "plt.title('MORE drawdown: fall from the previous peak, in percent')\n"
+         "plt.ylabel('%')\n"
+         "plt.grid(alpha=0.3)\n"
+         "plt.show()"),
+    code("# Total return by period\n"
+         "for label, a, b in [('2024 stub (20 Sep to 31 Dec)', '2024-09-13', '2024-12-31'),\n"
+         "                    ('2025', '2025-01-01', '2025-12-31'),\n"
+         "                    ('2026 to 13 Nov', '2026-01-01', '2026-11-13')]:\n"
+         "    x = rets.loc[a:b]\n"
+         "    print(label, {k: round(float(((1 + x[k]).prod() - 1) * 100), 2) for k in x.columns})"),
+    code("# Correlation with MORE\n"
+         "rets.corr()['MORE'].round(3)"),
+    code("# Monte Carlo: 10,000 paths over the next 52 weeks, from the last close.\n"
+         "# Two drifts: MORE's own average weekly return, and a conservative 7% a year.\n"
+         "rng = np.random.default_rng(42)\n"
+         "mu_w = rets['MORE'].mean()\n"
+         "sigma_w = rets['MORE'].std()\n"
+         "start = prices['MORE'].iloc[-1]\n"
+         "for label, mu in [('historical', mu_w), ('conservative 7% a year', 0.07 / 52)]:\n"
+         "    draws = rng.normal(mu, sigma_w, size=(10000, 52))\n"
+         "    paths = start * np.cumprod(1 + draws, axis=1)\n"
+         "    terminal = paths[:, -1]\n"
+         "    print(label, '| median $', round(float(np.median(terminal)), 2),\n"
+         "          '| 5th $', round(float(np.percentile(terminal, 5)), 2),\n"
+         "          '| 95th $', round(float(np.percentile(terminal, 95)), 2),\n"
+         "          '| chance of a loss', round(float((terminal < start).mean() * 100), 1), '%')"),
+    code("# Commodity scenarios: MORE weekly return on WTI oil, gold, and XIC.\n"
+         "fac = pd.read_csv('data/factor_weekly_returns.csv', index_col=0, parse_dates=True)\n"
+         "df = pd.concat([rets['MORE'].rename('MORE'), fac, rets['XIC']], axis=1, join='inner').dropna()\n"
+         "X = np.column_stack([np.ones(len(df)), df['WTI'], df['Gold'], df['XIC']])\n"
+         "beta, *_ = np.linalg.lstsq(X, df['MORE'].values, rcond=None)\n"
+         "resid = df['MORE'].values - X @ beta\n"
+         "r2 = 1 - float(resid @ resid) / float(((df['MORE'].values - df['MORE'].mean()) ** 2).sum())\n"
+         "print('R squared:', round(float(r2), 3))\n"
+         "print('Betas: alpha', round(float(beta[0]), 4), '| WTI', round(float(beta[1]), 3),\n"
+         "      '| Gold', round(float(beta[2]), 3), '| XIC', round(float(beta[3]), 3))\n"
+         "alpha_ann = float(beta[0]) * 52\n"
+         "for label, o, g, t in [('Base', 0.05, 0.05, 0.07),\n"
+         "                       ('Energy rally', 0.20, 0.00, 0.10),\n"
+         "                       ('Gold rally', 0.00, 0.20, 0.05),\n"
+         "                       ('Both fall', -0.20, -0.10, -0.10),\n"
+         "                       ('Oil crash, gold safety', -0.30, 0.10, -0.05)]:\n"
+         "    print(label, 'implied MORE move:',\n"
+         "          round(float((alpha_ann + beta[1] * o + beta[2] * g + beta[3] * t) * 100), 2), '%')"),
+    md("## Method and limits\n\n"
+       "Weekly Friday prices in CAD from Yahoo Finance, adjusted for dividends, "
+       "20 September 2024 to 13 November 2026, 113 weeks. Annual return is the "
+       "average weekly return multiplied by 52. Volatility is the standard "
+       "deviation of weekly returns multiplied by the square root of 52. The "
+       "Sharpe ratio uses a stated 2.0% risk free rate, not a market T-bill series. "
+       "Two years is a short window, so the risk numbers are thin and the return "
+       "numbers depend heavily on the gold rally of 2025 and the energy rally of "
+       "2026. The Monte Carlo uses MORE's own weekly volatility with two drifts, "
+       "and the scenarios use betas from 113 weeks, so both are ranges and "
+       "what-ifs, not predictions. Past performance does not predict future performance."),
+]
+nb = {"cells": cells,
+      "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python",
+                                  "name": "python3"},
+                   "language_info": {"name": "python", "version": "3.12.0"}},
+      "nbformat": 4, "nbformat_minor": 5}
+with open(base / "MORE_Investigation_Notebook.ipynb", "w") as f:
+    json.dump(nb, f, indent=1)
+print("notebook done")
